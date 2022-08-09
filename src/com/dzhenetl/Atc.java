@@ -7,6 +7,7 @@ public class Atc implements Runnable {
 
     private final int callsCount;
     private final Queue<Call> calls;
+    private final int WORK_TIMEOUT = 1000;
 
     public Atc(int callsCount) {
         this.callsCount = callsCount;
@@ -19,7 +20,7 @@ public class Atc implements Runnable {
             calls.offer(new Call());
             System.out.println("ATC поток добавил один звонок");
             try {
-                Thread.sleep(1000);
+                Thread.sleep(WORK_TIMEOUT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
