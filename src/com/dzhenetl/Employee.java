@@ -14,7 +14,10 @@ public class Employee implements Runnable {
     @Override
     public void run() {
         while (!callQueue.isEmpty()) {
-            callQueue.remove();
+            Call call = callQueue.poll();
+            if (call == null) {
+                continue;
+            }
             System.out.println(Thread.currentThread().getName() + " взял в работу звонок");
             try {
                 Thread.sleep(WORK_TIMEOUT);
